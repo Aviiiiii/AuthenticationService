@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -23,17 +24,16 @@ public class UserService {
 
     public List<UserResult> getAllUsers() {
 
-        List<UserResult> userList = null;
-        List<User> users = userRepository.findAll();
+        List<UserResult> userList = userRepository.findAll().stream()
+                .map(user -> {
+                    UserResult userResult = new UserResult();
+                    userResult.setId(user.getId());
+                    userResult.setName(user.getName());
+                    userResult.setEmail(user.getEmail());
+                    userResult.setUserId(user.getUserId());
+                    return userResult;
+                }).collect(Collectors.toList());
 
-        for ( UserResult userDto :userList){
-            userDto =new UserResult();
-            userDto.getEmail();
-            userDto.getId();
-            userDto.getName();
-            userDto.getUserId();
-            userList.add(userDto);
-        }
         return userList;
     }
 }
