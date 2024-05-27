@@ -23,7 +23,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Navigate to Project Directory
-        run: cd authenticationservice/pom.xml
+        run: cd ${{ github.workspace }}/authenticationservice/pom.xml
 
       - name: Build with Maven
         run: mvn -B clean package
