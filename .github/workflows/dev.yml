@@ -23,7 +23,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Navigate to Project Directory
-        run: cd ${{ github.workspace }}
+        run: cd /home/runner/work/AuthenticationService
 
       - name: Build with Maven
         run: mvn -B clean package
