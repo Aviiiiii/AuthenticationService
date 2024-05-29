@@ -27,15 +27,31 @@ public class UserControllerTests {
     @MockBean
     private UserService mockUserService;
 
-/*  @Test
+    @Test
     public void testGetAllUsers() throws Exception {
-      // Mocking the service layer to return expected data
+        // Mocking the service layer to return expected data
+        UserResult user1 = new UserResult();
+        user1.setId(1);
+        user1.setUserId(1);
+        user1.setName("John Doe");
+        user1.setEmail("john.doe@example.com");
+
+        UserResult user2 = new UserResult();
+        user2.setId(2);
+        user2.setUserId(2);
+        user2.setName("Jane Smith");
+        user2.setEmail("jane.smith@example.com");
+
+        when(mockUserService.getAllUsers()).thenReturn(Arrays.asList(user1, user2));
 
       mockMvc.perform(get("/users")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].id").value(1));
-    }*/
+              .andExpect(jsonPath("$[0].id").value(1))
+              .andExpect(jsonPath("$[0].userId").value(1))
+              .andExpect(jsonPath("$[0].name").value("John Doe"))
+              .andExpect(jsonPath("$[0].email").value("john.doe@example.com"));
+    }
 
 }
